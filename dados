@@ -1,0 +1,10 @@
+## Pasta dados/
+
+Responsável por armazenar os dados de um sistema, como:
+
+- Lista de candidatos
+- Lista de eleitores
+- Registros de votos
+
+Os dados podem ser salvos em arquivos no formato JSON para persistência
+  .
