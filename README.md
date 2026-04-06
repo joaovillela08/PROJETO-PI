@@ -22,3 +22,9 @@ Ferramenta Banco de Dados, VSCODE.
 
 📅 Status
 🚧 Em desenvolvimento
+
+## Estrutura do Projeto
+
+- main.py → lógica principal do sistema
+- dados/ → armazenamento de dados
+- docs/ → documentação do projeto
