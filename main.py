@@ -6,7 +6,6 @@ candidatos = {}
 eleitores = set()
 votos = {}
 
-# -------- VALIDAÇÃO DE CPF --------
 def validar_cpf(cpf):
     cpf = cpf.replace(".", "").replace("-", "").strip()
 
