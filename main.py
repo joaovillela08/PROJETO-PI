@@ -143,3 +143,4 @@ while opcao != "0":
         print("Encerrando sistema...")
     else:
         print("Opção inválida!")
+#até então foram gastas aproximadamente 3:00h de cada integrante no grupo apenas para o codigo (Gabriel Castro, Hyan Viotor e João vilela.)
