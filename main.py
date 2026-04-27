@@ -86,3 +86,60 @@ def cadastrar_eleitor():
     else:
         eleitores.add(cpf)
         print("Eleitor cadastrado com sucesso!")
+    def votar():
+    print("\n--- Votação ---")
+    cpf = input("Digite seu CPF: ")
+    cpf = cpf.replace(".", "").replace("-", "").strip()
+
+    if cpf not in eleitores:
+        print("Eleitor não cadastrado!")
+        return
+    if cpf in votos:
+        print("Você já votou!")
+        return
+    
+    if not candidatos:
+        print("Não há candidatos cadastrados!")
+        return
+
+    print("\nCandidatos disponíveis:")
+    for nome in candidatos:
+        print("-", nome)
+
+    escolha = input("Digite o nome do candidato: ")
+    if escolha in candidatos:
+        candidatos[escolha] += 1
+        votos[cpf] = escolha
+        print("Voto registrado com sucesso!")
+    else:
+        print("Candidato inválido!")
+
+def ver_resultado():
+    print("\n--- Resultado da Eleição ---")
+
+    if not candidatos:
+        print("Nenhum candidato cadastrado!")
+        return
+
+    for nome, qtd in candidatos.items():
+        print(f"{nome}: {qtd} votos")
+
+def listar_usuarios():
+    cursor.execute("SELECT id, nome, email FROM usuarios")
+    for (id, nome, email) in cursor.fetchall():
+        print(f"ID: {id}, Nome: {nome}, Email: {email}")
+opcao = ""
+while opcao != "0":
+    menu_principal()
+    opcao = input("Escolha uma opção: ")
+
+    if opcao == "1":
+        menu_cadastros()
+    elif opcao == "2":
+        votar()
+    elif opcao == "3":
+        ver_resultado()
+    elif opcao == "0":
+        print("Encerrando sistema...")
+    else:
+        print("Opção inválida!")
