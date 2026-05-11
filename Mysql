@@ -1,0 +1,63 @@
+#comando mysql
+create database projeto_integrador;
+use projeto_integrador;
+
+#verificar as tabelas
+#select * from projeto_integrador.eleitores;
+
+CREATE TABLE eleitores(
+	id INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+	nome VARCHAR(100) NOT NULL,
+	cpf VARCHAR(11) UNIQUE NOT NULL,
+	titulo_eleitor VARCHAR(12) UNIQUE NOT NULL,
+	mesario BOOLEAN DEFAULT false,
+	chave_acesso VARCHAR(255) NOT NULL,
+	status_voto BOOLEAN DEFAULT false
+);
+
+CREATE TABLE candidatos(
+	id_candidato INT PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(100) NOT NULL,
+	numero INT NOT NULL,
+	partido VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE voto(
+	id_voto INT PRIMARY KEY AUTO_INCREMENT,
+	id_eleitor INT,
+	data_hora DATETIME,
+
+FOREIGN KEY (id_eleitor) REFERENCES eleitores(id)
+);
+
+ALTER TABLE eleitores
+MODIFY COLUMN cpf VARCHAR(255) UNIQUE NOT NULL;
+
+
+ALTER TABLE voto
+ADD CONSTRAINT fk_voto_eleitor
+FOREIGN KEY (id_eleitor)
+REFERENCES eleitores(id)
+ON DELETE CASCADE;
+
+ALTER TABLE eleitores
+MODIFY mesario BOOLEAN NOT NULL;
+
+ALTER TABLE eleitores
+MODIFY mesario TINYINT(1) NOT NULL;
+
+ALTER TABLE eleitores
+ADD protocolo VARCHAR(20);
+
+ALTER TABLE voto
+ADD id_candidato INT,
+ADD FOREIGN KEY (id_candidato) REFERENCES candidatos(id_candidato);
+
+INSERT INTO candidatos (nome, numero, partido)
+VALUES ('Candidato 1', 10, 'ABC');
+
+INSERT INTO candidatos (nome, numero, partido)
+VALUES ('Candidato 2', 20, 'DEF');
+
+INSERT INTO candidatos (nome, numero, partido)
+VALUES ('Candidato 3', 30, 'ABC');
